@@ -1,0 +1,39 @@
+#sys moperator
+#sys stype
+
+struct sbyte:
+	byte p
+	byte n
+end
+
+struct sword:
+	byte n
+	word p
+end
+
+void __abs__[sword o]: 'pointer will be return
+	if [o.n=1]
+		o.n=0
+	return o
+end
+
+#sys operator+
+#sys incomplete
+void __sadd__[sword a,sword b]:
+	if [a.n=b.n]
+		a.p = +(a.p b.p)
+	else
+		'TODO
+#warning Incomplete code
+	end
+endf
+
+#sys incomplete
+void __byte2string__[ byte b,string component]:
+	dword ptr = 0
+	while [b>10]:
+		mov_ram(+(component.address ptr),+(%(ptr 10) 48))
+		ptr++
+		b = /(b 10)
+	end
+endf

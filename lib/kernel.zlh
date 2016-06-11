@@ -1,0 +1,26 @@
+#process apolicy
+#warning debugging ZLH kernel header file
+
+#if bits 16
+#macro _address dword
+#else
+#macro _address qword
+#warning 32bits complication mode in use
+#endif
+
+void __mov_ram__[ $_address address, byte data]:
+	asm:
+		mov [address],data
+	end
+endf
+
+byte __gbyte__[ $_address address]:
+	byte tmp
+	asm:
+		mov tmp,[address]
+	end
+	return tmp
+endf
+
+'void __swap_pointer__[]:
+'end

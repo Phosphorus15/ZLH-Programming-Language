@@ -1,0 +1,43 @@
+#using kernel
+
+struct output: 'default output source
+	$_address address
+	dword offset
+	byte sys
+end
+
+struct char = byte
+struct bool = byte
+
+struct string:
+	$_address address
+	dword length
+end
+
+#macro kout 0xb800
+
+constant output stdout(address = $kout,offset = 0x0,sys = 0x1)
+constant bool TRUE = 0x1
+constant bool FALSE = 0x0
+
+void objective __construct__[output o ]:
+	o.address = 0x0
+	offset = 0x0
+	sys = 0x0
+endf
+
+void objective __write__[ output o, byte data]:
+	mov_ram(o.address,data)
+	o.offset++
+	return
+endf
+
+void objective __write_string__[ output o, string str ]:
+	dword ptr = 0x0
+	byte tmp = 0x0
+	while [ptr<str.length]:
+		tmp = gbyte(+(str.address ptr))
+		write(o,tmp)
+		ptr++
+	end
+endf

@@ -1,0 +1,3 @@
+void* fastConvert(string str){
+	
+}

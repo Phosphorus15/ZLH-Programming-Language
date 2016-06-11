@@ -1,0 +1,16 @@
+#sys hidden 'hidden
+#sys builtin
+
+#macro allocate_byte $n db 0
+#macro allocate_word $n dw 0
+#macro allocate_dword $n dd 0
+#macro allocate_qword $n dd 0,0 'use two double-word to form a quad-word
+#macro allocate_string $n times $s db 0
+#macro process_var[a] (a[0]=0x22:a[0]=0x2c||ia=255:ia<65535:ia<4294967295:ia<18446744065119617025:error[too large digit]) 'internal process string
+
+#if USER_USING 1
+#error Security policy : critical
+#endif
+
+
+'4*10^-4g 1g
