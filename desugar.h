@@ -204,6 +204,9 @@ header particle_collection(vector<string> source){
 		}
 	}
 	source.clear();
+	if(icollect!=NONE){
+		error("unended defination",-1);
+	}
 	return h;
 }
 
@@ -229,7 +232,21 @@ void method::parse_parameters(string str,int l){
 
 seek_result seek_decompression_object(string tmp){
 	int w;
-	
+	seek_result re;
+	re.contains = false;
+	stack<char> pstack;
+	for(int x=0;x!=tmp.length();x++){
+		if(tmp[x]=='['){
+			pstack.push('[');
+		}else if(tmp[x]=='('){
+			pstack.push('(');
+		}else if(tmp[x]==']'||tmp[x]==')'){
+			if(pstack.top()!=tmp[x]){
+				//error();
+			}
+		}
+	}
+	return re;
 }
 
 seek_result seek_objective_call(string tmp){
@@ -296,8 +313,13 @@ method proceed_method(method m){
 	seek_result re;
 	for(vector<string>::iterator it = body.begin();it!=body.end();it++){
 		tmp = *it;
-		while((re=seek_objective_call(tmp)).contains){
+		//cout<<tmp<<endl;
+		/*while((re=seek_objective_call(tmp)).contains){
 			cout<<"objective call found : "<<re.start<<"--->"<<re.interm<<"  ["<<tmp<<"]"<<endl;
+			break;
+		}*/
+		while((re=seek_decompression_object(tmp)).contains){
+			cout<<"target found : "<<re.start<<"--->"<<re.interm<<"  ["<<tmp<<"]"<<endl;
 			break;
 		}
 	}
@@ -309,7 +331,9 @@ void start_desugar(){
 	debug("collecting desugar elements");
 	vector<method> methods = cheaders.list_all();
 	debug("starting desugar process");
+	cout<<methods.size()<<endl;
 	for(vector<method>::iterator it = methods.begin();it!=methods.end();it++){
+		cout<<"method "<<it->name<<endl;
 		*it = proceed_method(*it);
 	}
 }

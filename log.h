@@ -1,4 +1,8 @@
 void info(const char* data,int line){
+	if(line==-1){
+		fprintf(stdout,"[INFO] %s - unknown\n",data);
+		return ;
+	}
 	fprintf(stdout,"[INFO] %s - line %d\n",data,line);
 }
 
@@ -23,7 +27,10 @@ void warn(const char* data){
 }
 
 void error(const char* data,int line){
-	fprintf(stdout,"[ERROR] %s - line %d\n",data,line);
+	if(line==-1){
+		fprintf(stdout,"[ERROR] %s - unknown\n",data);
+	}else
+		fprintf(stdout,"[ERROR] %s - line %d\n",data,line);
 	exit(0);
 }
 

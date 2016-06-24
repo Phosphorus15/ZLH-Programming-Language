@@ -1,18 +1,18 @@
 # Project: Project
-# Makefile created by Dev-C++ 5.11
+# Makefile created by Dev-C++ 5.5.3
 
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
 OBJ      = main.o
 LINKOBJ  = main.o
-LIBS     = -L"F:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"F:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -std=c++11 -static-libgcc
-INCS     = -I"F:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"F:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"F:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
-CXXINCS  = -I"F:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"F:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"F:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"F:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
+LIBS     = -L"D:/temp/dev-cpp/Dev-Cpp/MinGW32/lib" -L"D:/temp/dev-cpp/Dev-Cpp/MinGW32/mingw32/lib" -static-libstdc++ -static-libgcc
+INCS     = -I"D:/temp/dev-cpp/Dev-Cpp/MinGW32/include"
+CXXINCS  = -I"D:/temp/dev-cpp/Dev-Cpp/MinGW32/include" -I"D:/temp/dev-cpp/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.7.2/include/c++"
 BIN      = Project.exe
-CXXFLAGS = $(CXXINCS) 
-CFLAGS   = $(INCS) 
-RM       = rm.exe -f
+CXXFLAGS = $(CXXINCS) -Wcpp
+CFLAGS   = $(INCS) -Wcpp
+RM       = rm -f
 
 .PHONY: all all-before all-after clean clean-custom
 
